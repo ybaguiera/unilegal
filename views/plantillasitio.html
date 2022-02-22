@@ -2,329 +2,319 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>UniLegal </title>
-  <!-- plugins:css -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>UniLegal1 </title>
+    <!-- plugins:css -->
 
-  <link rel="stylesheet" href="{{=URL('static','lib/font-awesome/css/font-awesome.css')}}"/>
-   <link rel="stylesheet" href="{{=URL('static','css/animate.css')}}"/>
-  <link rel="stylesheet" href="{{=URL('static','font-awesome/4.5.0/css/font-awesome.min.css')}}" />
-   <!-- plugins:css 
+    <link rel="stylesheet" href="{{=URL('static','lib/font-awesome/css/font-awesome.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static','css/animate.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static','font-awesome/4.5.0/css/font-awesome.min.css')}}" />
+    <!-- plugins:css 
   <link rel="stylesheet" href="{{=URL('static','font-awesome/4.5.0/css/fonts.googleapis.com.css')}}" />
   -->
-  <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}" />
 
-  <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap4.css')}}"/>
-   <link rel="stylesheet" href="{{=URL('static','plantilla/vendors/iconfonts/mdi/css/materialdesignicons.css')}}">
-  <link rel="stylesheet" href="{{=URL('static','plantilla/vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
-  <link rel="stylesheet" href="{{=URL('static','plantilla/vendors/css/vendor.bundle.base.css')}}">
-  <link rel="stylesheet" href="{{=URL('static','css/miestilo.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap4.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static','plantilla/vendors/iconfonts/mdi/css/materialdesignicons.css')}}">
+    <link rel="stylesheet" href="{{=URL('static','plantilla/vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{=URL('static','plantilla/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{=URL('static','css/miestilo.css')}}" />
 
-   <!-- datatables -->
-<link rel="stylesheet" type="text/css" href="{{=URL('static','datatables/datatables.min.css')}}"/>
-<!--<link rel="stylesheet" type="text/css" href="{{=URL('static','datatables/plugins/buttons.dataTables.min.css')}}"/>-->
+    <!-- datatables -->
+    <link rel="stylesheet" type="text/css" href="{{=URL('static','datatables/datatables.min.css')}}" />
+    <!--<link rel="stylesheet" type="text/css" href="{{=URL('static','datatables/plugins/buttons.dataTables.min.css')}}"/>-->
 
 
-<link rel="stylesheet" type="text/css" href="{{=URL('static','plantilla/sweetalert2/sweetalert.css')}}">
-  
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="{{=URL('static','plantilla/css/style.css')}}">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="{{=URL('static','plantilla/images/mini.png')}}" />
-  {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
-  {{block head}}{{end}}
+    <link rel="stylesheet" type="text/css" href="{{=URL('static','plantilla/sweetalert2/sweetalert.css')}}">
+
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{=URL('static','plantilla/css/style.css')}}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{=URL('static','plantilla/images/mini.png')}}" /> {{include 'web2py_ajax.html'}}
+    <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+    {{block head}}{{end}}
 
 
 </head>
 
 <body>
 
-  <div class="w2p_flash alert alert-dismissable">{{=response.flash or ''}}</div>
-  <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-       
-        <a class="navbar-brand brand-logo" href="{{=URL('default','index')}}"><img src="{{=URL('static','plantilla/images/logo.png')}}" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="{{=URL('default','index')}}"><img src="{{=URL('static','plantilla/images/mini.png')}}" alt="logo"/></a>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-stretch">
+    <div class="w2p_flash alert alert-dismissable">{{=response.flash or ''}}</div>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 
-        {{if 'auth' in globals():}}
-        <ul class="navbar-nav navbar-nav-right">
-        <li class="nav-item nav-settings ">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#mediumModal">
-              <i class="mdi mdi-magnify"></i>
-            </a>
-          </li>
-          <li class="nav-item  full-screen-link">
-            <a class="nav-link">
-              <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
-            </a>
-          </li>
-          
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <div class="">
-                {{if auth.user:}}
-              <i class="  mdi mdi-face   mdi-36px text-primary"></i>
-              {{else:}}
-              <i class=" mdi mdi-account-circle   mdi-36px text-primary"></i>
-              {{pass}}
-                <span class="availability-status online"></span>
-              </div>
-              <div class="nav-profile-text">
-                <p class="mb-1 text-black">
-                  {{if auth.user:}}{{=auth.user.first_name}}{{else:}}{{=T('Login')}}{{pass}}
-                </p>
-              </div>
-            </a>
-
-            <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-
-              {{if auth.user:}}
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{=URL('usuario','editar_usuario')}}">  <i class="mdi mdi-face-profile mr-2 text-warning"></i>{{=T('Profile')}}</a>
-              {{if 'change_password' not in auth.settings.actions_disabled:}}
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{=URL('default','user/change_password')}}">  <i class=" mdi mdi-key-change mr-2 text-danger"></i>{{=T('Change Password')}}</a>
-              {{pass}}
-              <div class="dropdown-divider"></div>
-
-              <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">  <i class="mdi mdi-logout mr-2 text-info"></i>{{=T('Logout')}}</a>
-              {{else:}}
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{=URL('default','user/login')}}"><i class="mdi mdi-login-variant  mr-2 text-info"></i>{{=T('Login')}}</a>
-              {{if 'register' not in auth.settings.actions_disabled:}}
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{=URL('usuario','crear_usuario')}}"><i class="mdi mdi-account-plus  mr-2 text-success"></i>{{=T('Sign up')}}</a>
-              {{pass}}
-              {{if 'retrieve_password' not in auth.settings.actions_disabled:}}
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{=URL('default','user/retrieve_password')}}"><i class="mdi mdi-key-remove  mr-2 text-danger"></i>{{=T('Lost Password')}}</a>
-              {{pass}}
-              {{pass}}
-
-
-
-
+                <a class="navbar-brand brand-logo" href="{{=URL('default','index')}}"><img src="{{=URL('static','plantilla/images/logo.png')}}" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="{{=URL('default','index')}}"><img src="{{=URL('static','plantilla/images/mini.png')}}" alt="logo" /></a>
             </div>
-          </li>
-         
-        </ul>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
 
-        {{pass}}
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                {{if 'auth' in globals():}}
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-settings ">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#mediumModal">
+                            <i class="mdi mdi-magnify"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item  full-screen-link">
+                        <a class="nav-link">
+                            <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <div class="">
+                                {{if auth.user:}}
+                                <i class="  mdi mdi-face   mdi-36px text-primary"></i> {{else:}}
+                                <i class=" mdi mdi-account-circle   mdi-36px text-primary"></i> {{pass}}
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">
+                                    {{if auth.user:}}{{=auth.user.first_name}}{{else:}}{{=T('Login')}}{{pass}}
+                                </p>
+                            </div>
+                        </a>
+
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+
+                            {{if auth.user:}}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{=URL('usuario','editar_usuario')}}"> <i class="mdi mdi-face-profile mr-2 text-warning"></i>{{=T('Profile')}}</a>
+                            {{if 'change_password' not in auth.settings.actions_disabled:}}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{=URL('default','user/change_password')}}"> <i class=" mdi mdi-key-change mr-2 text-danger"></i>{{=T('Change Password')}}</a>
+                            {{pass}}
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"> <i class="mdi mdi-logout mr-2 text-info"></i>{{=T('Logout')}}</a>
+                            {{else:}}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{=URL('default','user/login')}}"><i class="mdi mdi-login-variant  mr-2 text-info"></i>{{=T('Login')}}</a> {{if 'register' not in auth.settings.actions_disabled:}}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{=URL('usuario','crear_usuario')}}"><i class="mdi mdi-account-plus  mr-2 text-success"></i>{{=T('Sign up')}}</a> {{pass}} {{if 'retrieve_password' not in auth.settings.actions_disabled:}}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{=URL('default','user/retrieve_password')}}"><i class="mdi mdi-key-remove  mr-2 text-danger"></i>{{=T('Lost Password')}}</a> {{pass}} {{pass}}
+
+
+
+
+                        </div>
+                    </li>
+
+                </ul>
+
+                {{pass}}
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
         {{if not auth.user is None:}}
           <span class="mdi mdi-menu "></span>
           {{pass}}
         </button>
-      </div>
-    </nav>
+            </div>
+        </nav>
 
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_sidebar.html -->
-      {{if not auth.user is None:}}
-      {{if session.graduadopre is not None or (auth.has_membership('Administrador') or auth.has_membership('Técnico')):}}
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
- 
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{=URL('default','index')}}">
-              <span class="menu-title">Inicio</span>
-              <i class="mdi mdi-home menu-icon"></i>
-            </a>
-          </li>
-         
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#codigo" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Código</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-qrcode menu-icon"></i>
-            </a>
-            <div class="collapse" id="codigo">
-              <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{=URL('codigo_pregrado','codigos')}}">Pregrado</a></li>
-              
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#pregrado" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Solicitud Pregrado</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-content-paste menu-icon"></i>
-            </a>
-            <div class="collapse" id="pregrado">
-              <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{=URL('solicitud_pregrado','crear_solicitud_pregrado')}}">Crear</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{=URL('solicitud_pregrado','admin_solicitud_pregrado')}}">Administrar</a></li>
-             
-              
-              </ul>
-            </div>
-          </li>
-          
-          
-          {{if auth.has_membership('Administrador'):}}
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#graduadopre" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Graduado pregrado</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-card-details menu-icon"></i>
-            </a>
-            <div class="collapse" id="graduadopre">
-              <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{=URL('graduado_pregrado','crear_graduado_pregrado')}}">Crear</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{=URL('graduado_pregrado','admin_graduado_pregrado')}}">Administrar</a></li>
-              </ul>
-            </div>
-          </li>
-           
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#sg" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Secretaría General</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-store menu-icon"></i>
-            </a>
-            <div class="collapse" id="sg">
-              <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{=URL('secretaria_general','crear_secretaria_general')}}">Crear</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{=URL('secretaria_general','admin_secretaria_general')}}">Administrar</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-              <span class="menu-title">Importar datos</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-upload menu-icon"></i>
-            </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{=URL('base_datos','importar_pregrado')}}"> Pregrado</a></li>
-               
-                   </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages1" aria-expanded="false" aria-controls="general-pages">
-              <span class="menu-title">Usuarios</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-account menu-icon"></i>
-            </a>
-            <div class="collapse" id="general-pages1">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{=URL('usuario','crear_usuario')}}"> Crear</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{=URL('usuario','administrar_usuario')}}"> Administrar </a></li>
-                 <li class="nav-item"> <a class="nav-link" href="{{=URL('usuario','cambiar_rol')}}"> Cambiar Rol </a></li>
-                
-                   </ul>
-            </div>
-          </li>
-          
-          {{pass}}
-         
-        </ul>
-      </nav>
-      {{pass}}
-      {{pass}}
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-      
-          {{include}}
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021 Departamento de Desarrollo de Software, Dirección de Informatización, UNICA  .</span>
-           </div>
-        </footer>
         <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_sidebar.html -->
+            {{if not auth.user is None:}} {{if session.graduadopre is not None or (auth.has_membership('Administrador') or auth.has_membership('Técnico')):}}
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{=URL('default','index')}}">
+                            <span class="menu-title">Inicio</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#codigo" aria-expanded="false" aria-controls="ui-basic">
+                            <span class="menu-title">Código</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-qrcode menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="codigo">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('codigo_pregrado','codigos')}}">Pregrado</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#pregrado" aria-expanded="false" aria-controls="ui-basic">
+                            <span class="menu-title">Solicitud Pregrado</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-content-paste menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="pregrado">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('solicitud_pregrado','crear_solicitud_pregrado')}}">Crear</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('solicitud_pregrado','admin_solicitud_pregrado')}}">Administrar</a></li>
+
+
+                            </ul>
+                        </div>
+                    </li>
+
+
+                    {{if auth.has_membership('Administrador'):}}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#graduadopre" aria-expanded="false" aria-controls="ui-basic">
+                            <span class="menu-title">Graduado pregrado</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-account-card-details menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="graduadopre">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('graduado_pregrado','crear_graduado_pregrado')}}">Crear</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('graduado_pregrado','admin_graduado_pregrado')}}">Administrar</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#sg" aria-expanded="false" aria-controls="ui-basic">
+                            <span class="menu-title">Secretaría General</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-store menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="sg">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('secretaria_general','crear_secretaria_general')}}">Crear</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('secretaria_general','admin_secretaria_general')}}">Administrar</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+                            <span class="menu-title">Importar datos</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-upload menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="general-pages">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('base_datos','importar_pregrado')}}"> Pregrado</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#general-pages1" aria-expanded="false" aria-controls="general-pages">
+                            <span class="menu-title">Usuarios</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-account menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="general-pages1">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('usuario','crear_usuario')}}"> Crear</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('usuario','administrar_usuario')}}"> Administrar </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{=URL('usuario','cambiar_rol')}}"> Cambiar Rol </a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    {{pass}}
+
+                </ul>
+            </nav>
+            {{pass}} {{pass}}
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+
+                    {{include}}
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021 Departamento de Desarrollo de Software, Dirección de Informatización, UNICA  .</span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-            </div>
-            <div class="modal-body">Seleccione <b>Desconectarse</b> si está seguro que desea cerrar la sesión</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="{{=URL('default','user/logout')}}">Desconectarse</a>
+                </div>
+                <div class="modal-body">Seleccione <b>Desconectarse</b> si está seguro que desea cerrar la sesión</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{{=URL('default','user/logout')}}">Desconectarse</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-  <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="mediumModalLabel">Por favor, ingresar el código para verificar la validez de su fotocopia</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mediumModalLabel">Por favor, ingresar el código para verificar la validez de su fotocopia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-						</div>
-						<div class="modal-body">
-						 <div class="card-body card-block">
-                                        <form action="{{=URL('codigo_pregrado', 'verificar')}}" method="GET" id="formBuscar" >
-                                           
-                                            <div class="form-group">
-                      <label for="codigo">Código</label>
-                      <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código">
+                </div>
+                <div class="modal-body">
+                    <div class="card-body card-block">
+                        <form action="{{=URL('codigo_pregrado', 'verificar')}}" method="GET" id="formBuscar">
+
+                            <div class="form-group">
+                                <label for="codigo">Código</label>
+                                <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código">
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </form>
                     </div>
-                                             
-                                             
-                                            <div class="modal-footer">
-							                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-							                
-                                            <button type="submit" class="btn btn-primary">Aceptar</button>
-						                   </div>
-                                        </form>
-                                    </div>
-                                    	</div>
-						
-					</div>
-				</div>
-			</div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="{{=URL('static','plantilla/vendors/js/vendor.bundle.base.js')}}"></script>
-  <script src="{{=URL('static','plantilla/vendors/js/vendor.bundle.addons.js')}}"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="{{=URL('static','plantilla/js/off-canvas.js')}}"></script>
-  <script src="{{=URL('static','plantilla/js/misc.js')}}"></script>
-  <script src="{{=URL('static','axios/axios.js')}}"></script>
- 
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{{=URL('static','plantilla/vendors/js/vendor.bundle.base.js')}}"></script>
+    <script src="{{=URL('static','plantilla/vendors/js/vendor.bundle.addons.js')}}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="{{=URL('static','plantilla/js/off-canvas.js')}}"></script>
+    <script src="{{=URL('static','plantilla/js/misc.js')}}"></script>
+    <script src="{{=URL('static','axios/axios.js')}}"></script>
 
 
-<script src="{{=URL('static','plantilla/sweetalert2/sweetalert.min.js')}}"></script>
- 
-<script type="text/javascript" src="{{=URL('static','datatables/datatables.min.js')}}"></script>
-<!-- <script type="text/javascript" src="{{=URL('static','/DataTables-1.10.18/js/dataTables.bootstrap4.min')}}"></script> 
+
+    <script src="{{=URL('static','plantilla/sweetalert2/sweetalert.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{=URL('static','datatables/datatables.min.js')}}"></script>
+    <!-- <script type="text/javascript" src="{{=URL('static','/DataTables-1.10.18/js/dataTables.bootstrap4.min')}}"></script> 
 <script src="{{=URL('static','datatables/plugins/buttons.html5.min.js')}}"></script>
 <script src="{{=URL('static','datatables/plugins/dataTables.buttons.min.js')}}"></script>
 <script src="{{=URL('static','datatables/plugins/jszip.min.js')}}"></script>
@@ -332,22 +322,19 @@
 <script src="{{=URL('static','datatables/plugins/buttons.colVis.min.js')}}"></script>
 <script src="{{=URL('static','datatables/plugins/vfs_fonts.js')}}"></script>
 -->
-<script src="{{=URL('static','js/web2py-bootstrap4.js')}}"></script>
+    <script src="{{=URL('static','js/web2py-bootstrap4.js')}}"></script>
 
-<!-- datatables 
+    <!-- datatables 
 <link rel="stylesheet" href="{{=URL('static','plantilla/datepicker/bootstrap-datepicker.standalone.min.css')}}"/>
 <script src="{{=URL('static','datepicker/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{=URL('static','plantilla/datepicker/bootstrap-datepicker.min.js')}}"></script>-->
 
-{{block dataTable}}
+    {{block dataTable}} {{end datatable}}
 
 
-{{end datatable}}
-  
-
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <!-- End custom js for this page-->
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
 </body>
 
 </html>
