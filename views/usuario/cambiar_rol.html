@@ -1,0 +1,81 @@
+{{extend 'plantillasitio.html'}}
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+    <h2>Cambiar Rol</h2>
+    {{=grid}}
+
+</div>
+</div>
+</div>
+
+{{block dataTable}}
+
+<script >$(document).ready(function(){
+
+    // $('.form_header.row_buttons > a > span').removeClass("leftarrow ").addClass("arrowleft "); para arregalar lo que sea que pasa con la puta flecha
+    $('table')
+            .addClass('table table-hover')
+            .DataTable({
+                
+                
+                // "sScrollY": 450,
+                // "sScrollX": "100%",
+                // "sScrollXInner": "110%",
+                dom: '<"top"l>Bfrtip',
+                //"processing": true,
+                //"serverSide": true,
+                //"ajax":""
+                buttons: [
+                    // {
+                    //     extend: 'pdfHtml5',
+                    //     className: 'btn btn-primary',
+                    //     text: '{{=T('Exportar a PDF')}}',
+                    //     orientation: 'landscape',
+                    //     pageSize: 'LEGAL',
+                    //     download: 'open',
+                    //     exportOptions: {
+                    //         modifier: {page: 'all'}
+                    //     },
+                    // }, {extend:'colvis',
+                    //     text: '{{=T('Columnas Visibles')}}',
+                    //     collectionLayout: 'fixed two-column'
+                    // }
+                ],
+                
+                language: {
+                    lengthMenu: "{{=T('Mostrar _MENU_ registros por página')}}",
+                    zeroRecords: "{{=T('Ningún registro encontrado')}}",
+                    info: "{{=T('Mostrando página _PAGE_ de _PAGES_ páginas')}}",
+                    infoEmpty: "{{=T('Sin resultados')}}",
+                    search: "{{=T('Buscar')}}",
+                    infoFiltered: "{{=T('Resultados filtrados de _MAX_ registros')}}",
+                    processing:     "{{=T('Procesando')}}",
+                    infoPostFix:    "",
+                    loadingRecords: "{{=T('Cargando Records')}}",
+                    emptyTable:     "{{=T('Tabla vacía')}}",
+                    paginate: {
+                        first:      "{{=T('Primero')}}",
+                        previous:   "{{=T('Anterior')}}",
+                        next:       "{{=T('Siguiente')}}",
+                        last:       "{{=T('Último')}}"
+                    },
+                    aria: {
+                        sortAscending:  ": activar para ordenar elementos ascendentemente",
+                        sortDescending: ": activar para ordenar elementos descendentemente"
+                    }
+                }
+            });
+
+
+     $('.web2py_console a, .dataTables_filter, .dataTables_paginate').addClass('toright');
+     $('.dataTables_filter').addClass('toright');
+     
+   
+
+
+
+});
+
+</script>
+{{end datatable}}

@@ -1,0 +1,176 @@
+{{extend 'plantillasitio.html'}}
+{{if session.eliminar_solicitud_graduado is not None:}}
+
+ 
+                <div class="col-lg-12">
+                   <div class="alert alert-success alert-mg-b alert-success-style4">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+                            <h6><b> Aceptado!</b></h6>
+                            <p> {{=session.eliminar_solicitud_graduado}} </p>
+                            {{session.eliminar_solicitud_graduado=None}}
+                    
+                    </div>
+                </div>
+              
+      
+
+{{pass}}
+
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+    <h2>Administrar Solicitud Pregrado</h2>
+    <div class="web2py_grid">
+    <div class="web2py_console  "><div class="web2py_counter">
+    {{if contar>1:}}
+    {{=contar}} registros encontrados
+    {{else:}}
+    {{=contar}} registro encontrado
+    {{pass}}
+    </div></div>
+    <div class="web2py_table">
+    <div class="web2py_htmltable" style="width:100%;overflow-x:auto;-ms-overflow-x:scroll">
+    <table>
+        <thead>
+            <tr>
+                <!--<th>Id</th>-->
+                <th>CI</th>
+                <th>Tomo</th>
+                <th>Folio</th>
+                <th>Número</th>
+                <th>Código</th>
+                <th> Operación </th>
+
+                
+            </tr>
+        </thead>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function eliminar(id) {
+        swal({
+            title: "¿Está seguro de eliminar?",
+            text: "La solicitud de pregrado será eliminada completamente del sistema.",
+            
+            showCancelButton: true,
+            confirmButtonColor: "#366024",
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: true,
+            closeOnCancel: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    var url = "{{=URL('solicitud_pregrado','eliminar_solicitud_pregrado')}}";
+                    location.href = url + "/" + id;
+                }
+                else {
+                    // event.preventDefault();
+                    //swal("Cancelled !!", "Hey, your imaginary file is safe !!", "error");
+                }
+            });
+    }
+</script>
+
+{{block datatable}}
+<script>
+$(document).ready(function(){
+    $('table')
+    .addClass('table table-hover')
+    .DataTable({
+        
+        //Adding server-side processing
+        serverSide: true,
+        processing: true,
+        ajax: function ( data, callback, settings ) {
+            // console.log(data)
+            axios.get('{{=URL('solicitud_pregrado', 'pluvs')}}',{
+                params: {
+                    start: data.start,
+                    limit: data.length,
+                    search: data.search.value,
+                    order_column: data.columns[data.order[0].column].data,
+                    order_dir: data.order[0].dir
+                }
+            }).then(res=>{
+                // console.log(res)
+                callback({
+                    
+                   recordsTotal: res.data.length,
+                   recordsFiltered: res.data.length,
+                   data: res.data.pluvs
+                });
+            })
+            .catch(error => {
+                alert(error)
+            })
+        },
+        columns: [
+            // { data: "id" },
+            { data: "ci" },  
+            { data: "tomo_secretaria" },            
+            { data: "folio_secretaria"},
+            { data: "numero_secretaria"},
+           
+            
+             {
+              data: null,
+               "render": function ( data, type, row, meta ) {
+                  return `
+                  <a href={{=URL('codigo_pregrado','detalles2')}}/${row.id} class='btn btn-primary'>Ver</a>
+                  
+                  
+                  `;
+                }
+            },
+             {
+              data: null,
+              
+              "render": function ( data, type, row, meta ) {
+                  return `
+                  <a href="#" class='btn btn-primary' onclick="eliminar('${row.id}')">Eliminar</a>
+                  
+                  
+                  `;
+                }
+            }
+            
+        ],
+        dom: '<"top"l>Bfrtip',
+        language: {
+                    lengthMenu: "{{=T('Mostrar _MENU_ registros por página')}}",
+                    zeroRecords: "{{=T('Ningún registro encontrado')}}",
+                    info: "{{=T('Mostrando página _PAGE_ de _PAGES_ páginas')}}",
+                    infoEmpty: "{{=T('Sin resultados')}}",
+                    search: "{{=T('Buscar CI')}}",
+                    infoFiltered: "{{=T('Resultados filtrados de _MAX_ registros')}}",
+                    processing:     "{{=T('Procesando')}}",
+                    infoPostFix:    "",
+                    loadingRecords: "{{=T('Cargando Records')}}",
+                    emptyTable:     "{{=T('Tabla vacía')}}",
+                    paginate: {
+                        first:      "{{=T('Primero')}}",
+                        previous:   "{{=T('Anterior')}}",
+                        next:       "{{=T('Siguiente')}}",
+                        last:       "{{=T('Último')}}"
+                    },
+                    aria: {
+                        sortAscending:  ": activar para ordenar elementos ascendentemente",
+                        sortDescending: ": activar para ordenar elementos descendentemente"
+                    }
+                },
+    });
+     $('.web2py_console a, .dataTables_filter, .dataTables_paginate').addClass('toright');
+     $('.dataTables_filter').addClass('toright');
+});
+</script>
+{{end datatable}}
+

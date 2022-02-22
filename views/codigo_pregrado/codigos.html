@@ -1,0 +1,97 @@
+{{extend 'plantillasitio.html'}}
+
+{{if session.codigo is not None:}}
+
+ 
+                <div class="col-lg-12">
+                   <div class="alert alert-success alert-mg-b alert-success-style4">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+                            <h6><b> Aceptado!</b></h6>
+                            <p> {{=session.codigo}} </p>
+                            {{session.codigo=None}}
+                    </div>
+                </div>
+   {{pass}}
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+    <h2>Códigos de  Pregrado</h2>
+    {{=grid}}
+
+</div>
+</div>
+</div>
+{{block dataTable}}
+
+<script >$(document).ready(function(){
+
+    // $('.form_header.row_buttons > a > span').removeClass("leftarrow ").addClass("arrowleft "); para arregalar lo que sea que pasa con la puta flecha
+    $('table')
+            .addClass('table table-hover')
+            .DataTable({
+                
+                
+                // "sScrollY": 450,
+                // "sScrollX": "100%",
+                // "sScrollXInner": "110%",
+                dom: '<"top"l>Bfrtip',
+                //"processing": true,
+                //"serverSide": true,
+                //"ajax":""
+                buttons: [
+                    // {
+                    //     extend: 'pdfHtml5',
+                    //     className: 'btn btn-primary',
+                    //     text: '{{=T('Exportar a PDF')}}',
+                    //     orientation: 'landscape',
+                    //     pageSize: 'LEGAL',
+                    //     download: 'open',
+                    //     exportOptions: {
+                    //         modifier: {page: 'all'}
+                    //     },
+                    // }, {extend:'colvis',
+                    //     text: '{{=T('Columnas Visibles')}}',
+                    //     collectionLayout: 'fixed two-column'
+                    // }
+                ],
+                
+                language: {
+                    lengthMenu: "{{=T('Mostrar _MENU_ registros por página')}}",
+                    zeroRecords: "{{=T('ningún registro encontrado')}}",
+                    info: "{{=T('Mostrando página _PAGE_ de _PAGES_ páginas')}}",
+                    infoEmpty: "{{=T('sin resultados')}}",
+                    search: "{{=T('Buscar')}}",
+                    infoFiltered: "{{=T('Resultados filtrados de _MAX_ registros')}}",
+                    processing:     "{{=T('Procesando')}}",
+                    infoPostFix:    "",
+                    loadingRecords: "{{=T('cargando Records')}}",
+                    emptyTable:     "{{=T('tabla vacía')}}",
+                    paginate: {
+                        first:      "{{=T('Primero')}}",
+                        previous:   "{{=T('Anterior')}}",
+                        next:       "{{=T('Siguiente')}}",
+                        last:       "{{=T('Último')}}"
+                    },
+                    aria: {
+                        sortAscending:  ": activar para ordenar elementos ascendentemente",
+                        sortDescending: ": activar para ordenar elementos descendentemente"
+                    }
+                }
+            });
+
+
+     $('.web2py_console a, .dataTables_filter, .dataTables_paginate').addClass('toright');
+     $('.dataTables_filter').addClass('toright');
+     
+   
+
+
+
+});
+
+</script>
+{{end datatable}}
+

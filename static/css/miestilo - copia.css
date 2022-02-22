@@ -1,0 +1,87 @@
+
+.toright {
+  float: right;
+}
+
+.web2py_console  {
+  background-color: #e82c80;
+  border-color: #cc2a76;
+  color: #ffffff;
+    border-radius: 4px;
+    margin-bottom: 20px;
+   
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    height: 36px;
+   padding: 2px 3px 2px 8px;
+}
+
+.web2py_counter{
+  float: left !important;
+  text-align: left !important;
+}
+
+.content h2{
+  margin-top: 0px;
+}
+
+.web2py_breadcrumbs ul{
+  display: none;
+}
+
+
+
+.icono_barra {
+  float: left;
+     font-size: 23px;
+     line-height: 18px;
+     margin-right: 4px;
+     text-align: center;
+     width: 22px;
+}
+
+/* esto es para el data table */
+[type="search"] { 
+  padding: 0.275rem 1.375rem;
+  font-size: 1rem;
+  line-height: 1;
+  color: #495057;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+ }
+ 
+
+ .dataTables_length, .dataTables_filter, .dataTables_info{
+  font-family: "ubuntu-medium", sans-serif;
+  color: #9c9fa6 !important
+
+  }
+
+div.dataTables_wrapper div.dataTables_length select {
+    width: 75px;
+    display: inline-block;
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    color: #565656;
+    padding: 3px 12px;
+    height: 25px;
+    box-shadow: none;
+}
+  
+ .dataTables_paginate{
+  BACKGROUND-COLOR: #ec529773;
+  border: #116ab7;
+  border-radius: 8px;
+  padding:2px !important;
+  margin: 1px;
+} 
+
+.dataTables_paginate>a, .dataTables_paginate>span>a{
+  color: #ffffff;
+}
+.dataTables_paginate>span>a{
+  color: #ffffff;
+  background-color: rgb(158, 0, 32);
+}

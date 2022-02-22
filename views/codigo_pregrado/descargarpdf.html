@@ -1,0 +1,114 @@
+{{extend 'plantillasitio.html'}}
+{{block head}}
+<style>
+    .mov_mb {
+
+    }
+
+    .mov_mb > tbody > tr > td {
+        color: black;
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+
+    }
+
+    .mov_mb > tbody > tr > td > p {
+        color: black;
+        margin: auto;
+        margin-right: inherit !important;
+    }
+
+    .center_file {
+        text-align: center !important;
+    }
+
+    .right_file {
+        text-align: right !important;
+        margin-right: 10px !important;
+    }
+
+    .text_top {
+        vertical-align: top;
+    }
+
+    #jqSegmentedDisplay {
+        display: flex;
+    }
+
+    #jqSegmentedDisplay > div {
+        margin-right: 20px;
+    }
+
+</style>
+
+
+{{end}}
+
+{{block page_js}}
+<script src="{{=URL('static','vendor/js-pdf/html2pdf.min.js')}}"></script>
+<script src="{{=URL('static','vendor/js-pdf/html2canvas.js')}}"></script>
+<script src="{{=URL('static','vendor/js-pdf/jspdf.min.js')}}"></script>
+
+
+<script type="text/javascript">
+
+    function imprSelec(jqSegmentedDisplay) {
+        var ficha = document.getElementById(jqSegmentedDisplay);
+        var ventimp = window.open(' ', 'popimpr');
+        ventimp.document.write(ficha.innerHTML);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close();
+    }
+
+    function genPDF() {
+        var element = document.getElementById('jqSegmentedDisplay');
+        var opt = {
+            margin: [0.2, 0.2, 0.2, 0.2],
+            filename: 'fichero.pdf',
+            image: {type: 'jpeg', quality: 0.50},
+            html2canvas: {scale: 3},
+            jsPDF: {unit: 'in', format: 'letter', orientation: 'landscape'}
+        };
+
+        html2pdf().from(element).set(opt).save();
+
+// New Promise-based usage:
+//        html2pdf().from(element2).set(opt).save();
+
+// Old monolithic-style usage:
+        // html2pdf(element, opt);
+    }
+
+
+</script>
+
+{{end}}
+{{if not auth.user is None:}}
+<div class="col-12 grid-margin">
+<button type="submit" class="btn btn-primary" onclick="javascript:genPDF()">Descargar documento</button>
+</div>
+{{pass}}						                
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+    
+    
+    <h3>
+    <div id="jqSegmentedDisplay"> {{cod=session.codigos.codigo}}
+    <img src="{{=URL('static','codigos/'+cod+'.png')}}" alt="logo"/>
+    </div>
+    </h3>
+    
+    
+    </br>
+    
+   
+    
+   
+
+</div>
+</div>
+</div>
+

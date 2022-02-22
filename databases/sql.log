@@ -1,0 +1,627 @@
+timestamp: 2021-03-29T23:11:34.755305
+CREATE TABLE "solicitud_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id_usuario" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "ci" CHAR(512) UNIQUE,
+    "tomo_secretaria" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" INTEGER,
+    "graduacionyear" INTEGER,
+    "entidad" CHAR(512),
+    "motivo" TEXT,
+    "fotocopia" CHAR(512),
+    "estado" CHAR(512)
+);
+success!
+timestamp: 2021-04-06T16:58:00.219063
+CREATE TABLE "graduado_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre1" CHAR(512),
+    "nombre2" CHAR(512),
+    "apellido1" CHAR(512),
+    "apellido2" CHAR(512),
+    "ci" CHAR(512),
+    "tomo_secretaria" CHAR(512),
+    "fecha_graduado" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "pais" CHAR(512),
+    "modalidad" CHAR(512)
+);
+success!
+timestamp: 2021-04-06T16:58:00.234186
+CREATE TABLE "secretaria_general"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "centro" CHAR(512),
+    "firma" CHAR(512),
+    "url" CHAR(512)
+);
+success!
+timestamp: 2021-04-06T17:12:20.015824
+CREATE TABLE "graduado_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre1" CHAR(512),
+    "nombre2" CHAR(512),
+    "apellido1" CHAR(512),
+    "apellido2" CHAR(512),
+    "ci" CHAR(512),
+    "tomo_secretaria" CHAR(512),
+    "fecha_graduado" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "pais" CHAR(512),
+    "modalidad" CHAR(512)
+);
+timestamp: 2021-04-06T17:12:31.480777
+CREATE TABLE "secretaria_general"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "centro" CHAR(512),
+    "firma" CHAR(512),
+    "url" CHAR(512)
+);
+success!
+timestamp: 2021-04-06T17:12:31.513030
+CREATE TABLE "solicitud_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id_usuario" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "ci" CHAR(512) UNIQUE,
+    "tomo_secretaria" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" INTEGER,
+    "graduacionyear" INTEGER,
+    "entidad" CHAR(512),
+    "motivo" TEXT,
+    "fotocopia" CHAR(512),
+    "estado" CHAR(512)
+);
+timestamp: 2021-04-06T18:09:58.934839
+CREATE TABLE "graduado_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre1" CHAR(512),
+    "nombre2" CHAR(512),
+    "apellido1" CHAR(512),
+    "apellido2" CHAR(512),
+    "ci" CHAR(512),
+    "tomo_secretaria" INTEGER,
+    "fecha_graduado" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "pais" CHAR(512),
+    "modalidad" CHAR(512)
+);
+success!
+timestamp: 2021-04-19T09:54:41.515198
+CREATE TABLE "graduado_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre1" CHAR(512),
+    "nombre2" CHAR(512),
+    "apellido1" CHAR(512),
+    "apellido2" CHAR(512),
+    "ci" CHAR(512),
+    "tomo_secretaria" INTEGER,
+    "fecha_graduado" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "pais" CHAR(512),
+    "modalidad" CHAR(512)
+);
+timestamp: 2021-04-19T09:55:07.492443
+CREATE TABLE "solicitud_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id_usuario" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "ci" CHAR(512) UNIQUE,
+    "tomo_secretaria" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" INTEGER,
+    "graduacionyear" INTEGER,
+    "entidad" CHAR(512),
+    "motivo" TEXT,
+    "fotocopia" CHAR(512),
+    "estado" CHAR(512)
+);
+timestamp: 2021-04-20T15:25:48.534008
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512),
+    "ci" CHAR(512) UNIQUE
+);
+success!
+timestamp: 2021-04-20T15:25:48.557967
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2021-04-20T15:25:48.569787
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2021-04-20T15:25:48.580560
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2021-04-20T15:25:48.594194
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2021-04-20T15:25:48.606115
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2021-04-20T15:25:48.619019
+CREATE TABLE "graduado_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre1" CHAR(512),
+    "nombre2" CHAR(512),
+    "apellido1" CHAR(512),
+    "apellido2" CHAR(512),
+    "ci" CHAR(512),
+    "tomo_secretaria" INTEGER,
+    "fecha_graduado" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "pais" CHAR(512),
+    "modalidad" CHAR(512)
+);
+success!
+timestamp: 2021-04-20T15:25:48.630816
+CREATE TABLE "secretaria_general"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "centro" CHAR(512),
+    "firma" CHAR(512),
+    "url" CHAR(512)
+);
+success!
+timestamp: 2021-04-20T15:25:48.640713
+CREATE TABLE "solicitud_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id_usuario" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "ci" CHAR(512) UNIQUE,
+    "tomo_secretaria" INTEGER,
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" INTEGER,
+    "graduacionyear" INTEGER,
+    "entidad" CHAR(512),
+    "motivo" TEXT,
+    "fotocopia" CHAR(512),
+    "estado" CHAR(512)
+);
+success!
+timestamp: 2021-04-20T15:25:48.649698
+CREATE TABLE "codigo_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512) UNIQUE,
+    "fecha" CHAR(512),
+    "id_solicitud_pregrado" INTEGER REFERENCES "solicitud_pregrado" ("id") ON DELETE CASCADE   UNIQUE
+);
+success!
+timestamp: 2021-10-21T14:48:42.013748
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512),
+    "ci" CHAR(512) UNIQUE
+);
+timestamp: 2021-10-21T14:49:27.607268
+CREATE TABLE "graduado_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre1" CHAR(512),
+    "nombre2" CHAR(512),
+    "apellido1" CHAR(512),
+    "apellido2" CHAR(512),
+    "ci" CHAR(512),
+    "tomo_secretaria" INTEGER,
+    "fecha_graduado" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "pais" CHAR(512),
+    "modalidad" CHAR(512)
+);
+success!
+timestamp: 2021-10-21T14:49:27.633116
+CREATE TABLE "solicitud_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id_usuario" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "ci" CHAR(512) UNIQUE,
+    "tomo_secretaria" INTEGER,
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" INTEGER,
+    "graduacionyear" INTEGER,
+    "entidad" CHAR(512),
+    "motivo" TEXT,
+    "fotocopia" CHAR(512),
+    "estado" CHAR(512)
+);
+success!
+timestamp: 2021-10-21T14:49:27.647156
+CREATE TABLE "codigo_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512) UNIQUE,
+    "fecha" CHAR(512),
+    "id_solicitud_pregrado" INTEGER REFERENCES "solicitud_pregrado" ("id") ON DELETE CASCADE   UNIQUE
+);
+success!
+timestamp: 2021-10-21T15:09:21.761152
+ALTER TABLE "graduado_pregrado" ADD "carrera" CHAR(512);
+success!
+timestamp: 2021-10-21T15:19:56.746031
+CREATE TABLE "graduado_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre1" CHAR(512),
+    "nombre2" CHAR(512),
+    "apellido1" CHAR(512),
+    "apellido2" CHAR(512),
+    "ci" CHAR(512),
+    "tomo_secretaria" INTEGER,
+    "fecha_graduado" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "pais" CHAR(512),
+    "modalidad" CHAR(512),
+    "carrera" CHAR(512)
+);
+success!
+timestamp: 2021-11-03T16:28:48.584898
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "username" CHAR(128),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512),
+    "ci" CHAR(512) UNIQUE
+);
+success!
+timestamp: 2021-11-03T16:28:48.614794
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2021-11-03T16:28:48.628463
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2021-11-03T16:28:48.650030
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2021-11-03T16:28:48.665174
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2021-11-03T16:28:48.681865
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2021-11-03T16:28:48.701596
+CREATE TABLE "secretaria_general"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "centro" CHAR(512),
+    "firma" CHAR(512),
+    "url" CHAR(512)
+);
+success!
+timestamp: 2021-11-03T16:28:48.717413
+CREATE TABLE "solicitud_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id_usuario" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "ci" CHAR(512) UNIQUE,
+    "tomo_secretaria" INTEGER,
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "graduacionyear" CHAR(512),
+    "entidad" CHAR(512),
+    "motivo" TEXT,
+    "fotocopia" CHAR(512),
+    "estado" CHAR(512)
+);
+success!
+timestamp: 2021-11-03T16:28:48.727885
+CREATE TABLE "codigo_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512) UNIQUE,
+    "fecha" CHAR(512),
+    "id_solicitud_pregrado" INTEGER REFERENCES "solicitud_pregrado" ("id") ON DELETE CASCADE   UNIQUE
+);
+success!
+timestamp: 2021-11-03T16:29:09.511296
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "username" CHAR(128),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512),
+    "ci" CHAR(512) UNIQUE
+);
+timestamp: 2021-11-03T16:31:05.369046
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "username" CHAR(128),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512),
+    "ci" CHAR(512) UNIQUE
+);
+success!
+timestamp: 2021-11-03T16:31:05.393700
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2021-11-03T16:31:05.412447
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2021-11-03T16:31:05.424863
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2021-11-03T16:31:05.441458
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2021-11-03T16:31:05.457539
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2021-11-03T16:31:05.471675
+CREATE TABLE "graduado_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre1" CHAR(512),
+    "nombre2" CHAR(512),
+    "apellido1" CHAR(512),
+    "apellido2" CHAR(512),
+    "ci" CHAR(512),
+    "tomo_secretaria" INTEGER,
+    "fecha_graduado" CHAR(512),
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "pais" CHAR(512),
+    "modalidad" CHAR(512),
+    "carrera" CHAR(512)
+);
+success!
+timestamp: 2021-11-03T16:31:05.483581
+CREATE TABLE "secretaria_general"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "centro" CHAR(512),
+    "firma" CHAR(512),
+    "url" CHAR(512)
+);
+success!
+timestamp: 2021-11-03T16:31:05.495155
+CREATE TABLE "solicitud_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id_usuario" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "ci" CHAR(512) UNIQUE,
+    "tomo_secretaria" INTEGER,
+    "folio_secretaria" CHAR(512),
+    "numero_secretaria" CHAR(512),
+    "graduacionyear" CHAR(512),
+    "entidad" CHAR(512),
+    "motivo" TEXT,
+    "fotocopia" CHAR(512),
+    "estado" CHAR(512)
+);
+success!
+timestamp: 2021-11-03T16:31:05.511563
+CREATE TABLE "codigo_pregrado"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512) UNIQUE,
+    "fecha" CHAR(512),
+    "id_solicitud_pregrado" INTEGER REFERENCES "solicitud_pregrado" ("id") ON DELETE CASCADE   UNIQUE
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

@@ -1,0 +1,22 @@
+{{extend 'plantillasitio.html'}}
+
+<div class="card">
+     <div>{{=A("Volver", _href="javascript:history.back(1)", _class="btn btn-info")}}</div>
+     <br/>
+     <br/>
+     <br/>
+     
+     <table>
+     <tr>
+     <td><h3>{{=T("Correo electrónico:  ")}}<b>{{=db.auth_user(db.auth_user.id == rol.user_id).email}}</b></h3></td>
+     <td><h3>{{=T("Nombre y Apellidos:  ")}}<b>{{=db.auth_user(db.auth_user.id == rol.user_id).first_name}} {{=db.auth_user(db.auth_user.id == rol.user_id).last_name}}</b></h3></td>
+     </tr>
+     </table>
+    
+
+    <div class="card-body">
+        <br/>
+    {{=formulario}}
+
+    </div>
+</div>

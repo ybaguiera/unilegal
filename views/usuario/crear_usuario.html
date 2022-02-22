@@ -1,0 +1,43 @@
+{{extend 'plantillasitio.html'}}
+{{if auth.user is None:}}
+<style>
+.main-panel {
+  transition: width 0.25s ease, margin 0.25s ease;
+  width: calc(100%);
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+</style>
+{{pass}} 
+{{if request.args(0)=="creado":}}
+
+ 
+                <div class="col-lg-12">
+                   <div class="alert alert-success alert-mg-b alert-success-style4">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+                            <h6><b> Aceptada!</b></h6>
+                            <p> El usuario ha sido creado correctamente  </p>
+                    
+                    </div>
+                </div>
+        {{pass}}
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+{{if auth.has_membership('Administrador'):}}
+    <h2>Crear usuario</h2>
+    {{else:}}
+    <h2>Registrarse</h2>
+    {{pass}}
+    </br>
+    {{=formulario}}
+
+</div>
+</div>
+</div>

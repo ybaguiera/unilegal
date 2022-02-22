@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{=response.title or request.application}}</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{{=URL('static','plantilla/vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
+  <link rel="stylesheet" href="{{=URL('static','plantilla/vendors/css/vendor.bundle.base.css')}}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{{=URL('static','plantilla/css/style.css')}}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{{=URL('static','plantilla/images/favicon.png')}}" />
+
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth">
+        <div class="row w-100">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left p-5">
+              <div class="brand-logo" style="text-align: center;">
+                <img src="{{=URL('static','plantilla/images/logo.png')}}" alt="logo"/>
+              </div>
+
+
+              <h2>
+                <small class="text-muted">
+                  {{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
+              
+                      </small>
+                  </h2>
+              <div class="dropdown-divider"></div>
+              <br>
+              {{=form}}
+              {{if request.args(0)=='login' and not 'register' in auth.settings.actions_disabled:}}
+              <a href="{{=URL('user/register')}}">{{=T('Register')}}</a>
+              <br/>
+              {{pass}}
+              {{if request.args(0)=='login' and not 'retrieve_password' in auth.settings.actions_disabled:}}
+          <a href="{{=URL('user/retrieve_password')}}">{{=T('Lost your password?')}}</a>
+
+            </div>
+              {{pass}}
+              {{if request.args(0)=='register':}}
+              <a href="{{=URL('user/login')}}">{{=T('Login')}}</a>
+              {{pass}}
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{{=URL('static','plantilla/vendors/js/vendor.bundle.base.js')}}"></script>
+  <script src="{{=URL('static','plantilla/vendors/js/vendor.bundle.addons.js')}}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{{=URL('static','plantilla/js/off-canvas.js')}}"></script>
+  <script src="{{=URL('static','plantilla/js/misc.js')}}"></script>
+  <!-- endinject -->
+
+
+
+
+
+
+{{block page_js}}
+<script>
+    jQuery("#web2py_user_form input:visible:enabled:first").focus();
+{{if request.args(0)=='register':}}
+    web2py_validate_entropy(jQuery('#auth_user_password'),100);
+{{elif request.args(0)=='change_password':}}
+    web2py_validate_entropy(jQuery('#no_table_new_password'),100);
+{{pass}}
+</script>
+{{end page_js}}
+</body>
+
+</html>

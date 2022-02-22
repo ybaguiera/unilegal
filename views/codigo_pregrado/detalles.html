@@ -1,0 +1,272 @@
+{{extend 'plantillasitio.html'}}
+{{block head}}
+{{if auth.user is None:}}
+<style>
+.main-panel {
+  transition: width 0.25s ease, margin 0.25s ease;
+  width: calc(100%);
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+</style>
+{{pass}} 
+<style>
+    .mov_mb {
+
+    }
+
+    .mov_mb > tbody > tr > td {
+        color: black;
+        text-align: left;
+        padding-left: 5px;
+        padding-right: 5px;
+
+    }
+
+    .mov_mb > tbody > tr > td > p {
+        color: black;
+        margin: auto;
+        margin-right: inherit !important;
+    }
+
+    .center_file {
+        text-align: center !important;
+    }
+
+    .right_file {
+        text-align: right !important;
+        margin-right: 10px !important;
+    }
+
+    .text_top {
+        vertical-align: top;
+    }
+
+    #jqSegmentedDisplay {
+        display: flex;
+    }
+
+    #jqSegmentedDisplay > div {
+        margin-right: 20px;
+    }
+
+</style>
+
+
+{{end}}
+
+{{block page_js}}
+<script src="{{=URL('static','vendor/js-pdf/html2pdf.min.js')}}"></script>
+<script src="{{=URL('static','vendor/js-pdf/html2canvas.js')}}"></script>
+<script src="{{=URL('static','vendor/js-pdf/jspdf.min.js')}}"></script>
+
+
+<script type="text/javascript">
+
+    function imprSelec(jqSegmentedDisplay) {
+        var ficha = document.getElementById(jqSegmentedDisplay).style.display="block";
+        
+        var ventimp = window.open(' ', 'popimpr');
+        ventimp.document.write(ficha.innerHTML);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close();
+    }
+
+    function genPDF() {
+        document.getElementById('jqSegmentedDisplay').style.display="block";
+        var element = document.getElementById('jqSegmentedDisplay');
+        
+        var opt = {
+            margin: [0.2, 0.2, 0.2, 0.2],
+            filename: 'fichero.pdf',
+            image: {type: 'jpeg', quality: 0.50},
+            html2canvas: {scale: 3},
+            jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
+        };
+
+        html2pdf().from(element).set(opt).save();
+       // document.getElementById('jqSegmentedDisplay').style.display="none";
+// New Promise-based usage:
+//        html2pdf().from(element2).set(opt).save();
+
+// Old monolithic-style usage:
+        // html2pdf(element, opt);
+    }
+
+
+</script>
+
+{{end}}
+{{if not auth.user is None:}}
+<div class="col-12 grid-margin">
+<button type="submit" class="btn btn-primary" onclick="javascript:genPDF()">Descargar documento</button>
+</div>
+{{pass}}						                
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+
+    <h2>Verificar fotocopia</h2>
+    </br>
+    
+    <h3><b>Código:</b> {{=consultac.codigo}}    
+    </h3>
+    
+    
+    </br>
+    
+    <table>
+    <tr><td><b>Nombre:</b> {{=consulta2.nombre1}}
+        {{if consulta2.nombre2 is not None:}}
+        {{=consulta2.nombre2}}
+        {{pass}}
+    </td></tr>
+    <tr><td> <b>Apellidos:</b> {{=consulta2.apellido1}} {{=consulta2.apellido2}}</td></tr>
+    <tr><td><b>CI:</b> {{=consulta2.ci}}</td></tr>
+    <tr><td><b>Tomo de Secretaría General:</b> {{=consulta2.tomo_secretaria}}</td></tr>
+    <tr><td><b>Fecha de Graduación:</b> {{=consulta2.fecha_graduado}}</td></tr>
+    <tr><td><b>Folio de Secretaría General:</b> {{=consulta2.folio_secretaria}}</td></tr>
+    <tr><td><b>Número de Secretaría General:</b> {{=consulta2.numero_secretaria}}</td></tr>
+    <tr><td><b>País:</b> {{=consulta2.pais}}</td></tr>
+    <tr><td><b>Carrera:</b> {{=consulta2.carrera}}</td></tr>
+
+
+
+    </table>
+    
+   <div style="display: none;" id="jqSegmentedDisplay"> {{cod=consultac.codigo}}
+    {{titulo=consulta.fotocopia}}
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <img style="height:1010px;width: 800px;"  src="{{=URL('static','titulos/'+titulo)}}" />
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+    
+    <div class="row">
+    
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <b>Nombre: </b>{{=consulta2.nombre1}}
+            
+        {{if consulta2.nombre2 is not None:}}
+        {{=consulta2.nombre2}}
+        {{pass}}
+        </br>
+         </br>
+           <b>Apellidos:</b> {{=consulta2.apellido1}} {{=consulta2.apellido2}}
+           </br>
+         </br>
+          <b>CI:</b> {{=consulta2.ci}}
+          </br>
+         </br>
+            <b>Tomo de Secretaría General:</b> {{=consulta2.tomo_secretaria}}
+          </br>
+         </br>
+         <b>Fecha de Graduación:</b> {{=consulta2.fecha_graduado}}
+         </br>
+         </br>
+           <b>Folio de Secretaría General:</b> {{=consulta2.folio_secretaria}}
+        </br>
+         </br>
+          <b>Número de Secretaría General:</b> {{=consulta2.numero_secretaria}}
+           </br>
+         </br>
+         <b>País:</b> {{=consulta2.pais}}
+          </br>
+         </br>
+            <b>Carrera:</b> {{=consulta2.carrera}}
+          </div>
+        </div>
+    </div>
+
+    
+
+
+     </div>
+    </div>
+    <img class="img-fluid" style="max-width:100%; height:auto;" src="{{=URL('static','codigos/'+cod+'.png')}}">
+    
+    
+    
+     <p style="text-align:justify;">Para poder comprobar que los documentos presentados son originales primeramente debe verificar que los datos de la fotocopia y los datos de la otra hoja coinciden, si los datos no coinciden puede ser una falsificación. Lo único que no se puede falsificar es el código que aparece debajo de la imagen QR. Este código es único en el sistema de verificación y esta asociado a una única persona. Para comprobar dicho código acceda al sistema de verificación e introduzcalo en la barra de busqueda. Si el código es válido le mostrará los datos de la persona y ahi procederá a comprobarlo con la fotocopia y el carnet de la persona a verificar. Sino es válido el sistema se lo indicará. Otra opción es escanear el código QR, el cual le mostrará una URL a la cual debe acceder y se le mostrarán datos de una persona y ahí procederá a verificarlos.</p>
+   
+    </div>
+
+</div>
+</div>
+</div>
+
+{{block dataTable}}
+
+<script >$(document).ready(function(){
+
+    // $('.form_header.row_buttons > a > span').removeClass("leftarrow ").addClass("arrowleft "); para arregalar lo que sea que pasa con la puta flecha
+    $('table')
+            .addClass('table table-hover')
+            .DataTable({
+                
+                
+                // "sScrollY": 450,
+                // "sScrollX": "100%",
+                // "sScrollXInner": "110%",
+                dom: '<"top"l>Bfrtip',
+                //"processing": true,
+                //"serverSide": true,
+                //"ajax":""
+                buttons: [
+                    // {
+                    //     extend: 'pdfHtml5',
+                    //     className: 'btn btn-primary',
+                    //     text: '{{=T('Exportar a PDF')}}',
+                    //     orientation: 'landscape',
+                    //     pageSize: 'LEGAL',
+                    //     download: 'open',
+                    //     exportOptions: {
+                    //         modifier: {page: 'all'}
+                    //     },
+                    // }, {extend:'colvis',
+                    //     text: '{{=T('Columnas Visibles')}}',
+                    //     collectionLayout: 'fixed two-column'
+                    // }
+                ],
+                
+                language: {
+                    lengthMenu: "{{=T('Mostrar _MENU_ registros por página')}}",
+                    zeroRecords: "{{=T('ningún registro encontrado')}}",
+                    info: "{{=T('Mostrando página _PAGE_ de _PAGES_ páginas')}}",
+                    infoEmpty: "{{=T('sin resultados')}}",
+                    search: "{{=T('Buscar')}}",
+                    infoFiltered: "{{=T('Resultados filtrados de _MAX_ registros')}}",
+                    processing:     "{{=T('Procesando')}}",
+                    infoPostFix:    "",
+                    loadingRecords: "{{=T('cargando Records')}}",
+                    emptyTable:     "{{=T('tabla vacía')}}",
+                    paginate: {
+                        first:      "{{=T('Primero')}}",
+                        previous:   "{{=T('Anterior')}}",
+                        next:       "{{=T('Siguiente')}}",
+                        last:       "{{=T('Último')}}"
+                    },
+                    aria: {
+                        sortAscending:  ": activar para ordenar elementos ascendentemente",
+                        sortDescending: ": activar para ordenar elementos descendentemente"
+                    }
+                }
+            });
+
+
+     $('.web2py_console a, .dataTables_filter, .dataTables_paginate').addClass('toright');
+     $('.dataTables_filter').addClass('toright');
+     
+   
+
+
+
+});
+
+</script>
+{{end datatable}}

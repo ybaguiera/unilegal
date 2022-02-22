@@ -1,0 +1,188 @@
+{{extend 'plantillasitio.html'}}
+{{if session.eliminar_usuario is not None:}}
+
+ 
+                <div class="col-lg-12">
+                   <div class="alert alert-success alert-mg-b alert-success-style4">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+                            <h6><b> Aceptado!</b></h6>
+                            <p> {{=session.eliminar_usuario}} </p>
+                            {{session.eliminar_usuario=None}}
+                    
+                    </div>
+                </div>
+              
+      
+
+{{pass}}
+{{if session.modificar_usuario is not None:}}
+
+ 
+                <div class="col-lg-12">
+                   <div class="alert alert-success alert-mg-b alert-success-style4">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+                            <h6><b> Aceptado!</b></h6>
+                            <p> {{=session.modificar_usuario}} </p>
+                            {{session.modificar_usuario=None}}
+                    </div>
+                </div>
+              
+      
+
+{{pass}}
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+    <h2>Administrar usuario</h2>
+    <div class="web2py_grid">
+    <div class="web2py_console  "><div class="web2py_counter">
+    {{if contar>1:}}
+    {{=contar}} registros encontrados
+    {{else:}}
+    {{=contar}} registro encontrado
+    {{pass}}
+    </div></div>
+    <div class="web2py_table">
+    <div class="web2py_htmltable" style="width:100%;overflow-x:auto;-ms-overflow-x:scroll">
+    <table>
+        <thead>
+            <tr>
+                <!--<th>Id</th>-->
+                
+                <th>Nombre</th>
+                <th>Apellido</th>
+                
+                <th>Correo</th>
+                <th>CI</th>
+                
+               <th> Operaciones   </th>
+                
+            </tr>
+        </thead>
+</table>
+</div>
+</div>
+</div>
+<script>
+    function eliminar(id) {
+        swal({
+            title: "¿Está seguro de eliminar?",
+            text: "El usuario será eliminado completamente del sistema.",
+            
+            showCancelButton: true,
+            confirmButtonColor: "#366024",
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: true,
+            closeOnCancel: true
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    var url = "{{=URL('usuario','eliminar_usuario')}}";
+                    location.href = url + "/" + id;
+                }
+                else {
+                    // event.preventDefault();
+                    //swal("Cancelled !!", "Hey, your imaginary file is safe !!", "error");
+                }
+            });
+    }
+</script>
+
+
+{{block datatable}}
+<script>
+$(document).ready(function(){
+    $('table')
+    .addClass('table table-hover')
+    .DataTable({
+        dom: '<"top"l>Bfrtip',
+        //Adding server-side processing
+        serverSide: true,
+        processing: true,
+        ajax: function ( data, callback, settings ) {
+            // console.log(data)
+            axios.get('{{=URL('usuario', 'pluvs')}}',{
+                params: {
+                    start: data.start,
+                    limit: data.length,
+                    search: data.search.value,
+                    order_column: data.columns[data.order[0].column].data,
+                    order_dir: data.order[0].dir
+                }
+            }).then(res=>{
+                // console.log(res)
+                callback({
+                    
+                   recordsTotal: res.data.length,
+                   recordsFiltered: res.data.length,
+                   data: res.data.pluvs
+                });
+            })
+            .catch(error => {
+                alert(error)
+            })
+        },
+        columns: [
+            // { data: "id" },
+            { data: "first_name" },
+            { data: "last_name" },
+            { data: "email"},
+            { data: "ci"},
+           
+            {
+              data: null,
+               "render": function ( data, type, row, meta ) {
+                  return `
+                  
+                 <a href={{=URL('usuario','modificar_usuario')}}/${row.id} class='btn btn-primary'><i class="mdi mdi-border-color"></i>Modificar</a>
+                 <a href="#" onclick="eliminar('${row.id}')" class='btn btn-primary'><i class="mdi mdi-delete"></i>Eliminar</a>
+                   `;
+                }
+            },
+           
+            
+            
+        ],
+        
+        language: {
+                    lengthMenu: "{{=T('Mostrar _MENU_ registros por página')}}",
+                    zeroRecords: "{{=T('Ningún registro encontrado')}}",
+                    info: "{{=T('Mostrando página _PAGE_ de _PAGES_ páginas')}}",
+                    infoEmpty: "{{=T('Sin resultados')}}",
+                    search: "{{=T('Buscar')}}",
+                    infoFiltered: "{{=T('Resultados filtrados de _MAX_ registros')}}",
+                    processing:     "{{=T('Procesando')}}",
+                    infoPostFix:    "",
+                    loadingRecords: "{{=T('Cargando Records')}}",
+                    emptyTable:     "{{=T('Tabla vacía')}}",
+                    paginate: {
+                        first:      "{{=T('Primero')}}",
+                        previous:   "{{=T('Anterior')}}",
+                        next:       "{{=T('Siguiente')}}",
+                        last:       "{{=T('Último')}}"
+                    },
+                    aria: {
+                        sortAscending:  ": activar para ordenar elementos ascendentemente",
+                        sortDescending: ": activar para ordenar elementos descendentemente"
+                    }
+                },
+        });
+     $('.web2py_console a, .dataTables_filter, .dataTables_paginate').addClass('toright');
+     $('.dataTables_filter').addClass('toright');
+});
+</script>
+{{end datatable}}
+
+
+
+</div>
+</div>
+</div>
+

@@ -1,0 +1,19 @@
+{{extend 'layout_ela.html'}}
+{{block page_js}}
+<script>
+    $(document).ready(function () {
+        $("#no_table_id_usuario").val("{{=usuario_responsable.id_usuario}}");
+        $("#no_table_nombre_responsable").val("{{=usuario_responsable.nombre_responsable}}");
+    });
+</script>
+{{end page_js}}
+<div class="card">
+    <div>{{=A("Volver", _href=URL('admin_responsable'), _class="btn btn-info")}}</div>
+    <h1>{{=T("Asignar responsable: ")}}</h1>
+
+    <div class="card-body">
+        <br/>
+    {{=formulario}}
+
+    </div>
+</div>

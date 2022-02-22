@@ -1,0 +1,135 @@
+{{block head}}
+<style>
+
+    h2 {
+        margin-top: 3%;
+    }
+
+    .loader {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url('{{=URL('static','images/gif/loading-65.gif')}}') 50% 50% no-repeat rgb(249, 249, 249);
+        opacity: .8;
+        display: none;
+    }
+
+    .loader > h1 {
+        position: fixed;
+        top: 60%;
+        left: 42%;
+    }
+</style>
+{{end}}
+
+{{block page_js}}
+<script src="{{=URL('static','vendor/js-pdf/html2pdf.min.js')}}"></script>
+<script src="{{=URL('static','vendor/js-pdf/html2canvas.js')}}"></script>
+<script src="{{=URL('static','vendor/js-pdf/jspdf.min.js')}}"></script>
+
+
+<script type="text/javascript">
+
+    function imprSelec(jqSegmentedDisplay) {
+        var ficha = document.getElementById(jqSegmentedDisplay);
+        var ventimp = window.open(' ', 'popimpr');
+        ventimp.document.write(ficha.innerHTML);
+        ventimp.document.close();
+        ventimp.print();
+        ventimp.close();
+    }
+
+    function genPDF() {
+        var cargando = $(".loader");
+
+        var cant = parseInt("{{=varId}}");
+
+        cargando.show();
+
+        var max = cant;
+        var cnt = 0;
+
+        asyncTask(cnt, function callback(value, result) {
+            console.log('END execution with value =', value, 'and result =', result);
+            if (++cnt > max) {
+                console.log('COMPLETED');
+                cargando.hide()
+            } else {
+                asyncTask(cnt, callback);
+            }
+        });
+
+// New Promise-based usage:
+//        html2pdf().from(element2).set(opt).save();
+
+// Old monolithic-style usage:
+        // html2pdf(element, opt);
+    }
+
+    function asyncTask(value, callback) {
+//        console.log('START execution with value =', value);
+        console.log('Generando pdf: ', value);
+        var element = document.getElementById(value.toString());
+        var opt = {
+            margin: [1.16, 0.2, 1, 0.2],
+            filename: 'fichero' + value + '.pdf',
+            image: {type: 'jpeg', quality: 1},
+            html2canvas: {scale: 1},
+            jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
+        };
+
+        setTimeout(function () {
+            html2pdf().from(element).set(opt).save();
+            callback(value);
+        }, 0 | Math.random() * 100);
+    }
+
+
+</script>
+
+{{end}}
+
+
+
+{{extend 'layout_ela.html'}}
+
+
+<div class="loader">
+    <h1>{{=T("Generando pdf...")}}</h1>
+</div>
+<a href="javascript:imprSelec('jqSegmentedDisplay')" class="btn btn-success">{{=T("Generar PDF")}}</a>
+<a href="javascript:genPDF()" class="btn btn-danger">{{=T("Generar PDF usando html2pdf")}}</a>
+
+<div class="card">
+    <h2>{{=T("Vista previa.. " + nombreArea)}}</h2>
+
+    <div class="card-body">
+        <div id="jqSegmentedDisplay">
+
+        {{i = 1}}
+        {{varId = 0}}
+        {{cant = len(listaMedios)}}
+
+        {{while i <= cant:}}
+        {{varId += 1}}
+            <div id="{{=varId}}">
+            {{while i <= cant and i % 100 != 0:}}
+    {{=listaMedios[i - 1]}}
+    {{i += 1}}
+    {{pass}}
+    {{if i <= cant:}}
+    {{=listaMedios[i - 1]}}
+    {{pass}}
+            </div>
+        {{i += 1}}
+        {{pass}}
+
+        </div>
+    </div>
+</div>
+
+<h2></h2>
+

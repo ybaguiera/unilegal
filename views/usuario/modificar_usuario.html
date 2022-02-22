@@ -1,0 +1,43 @@
+{{extend 'plantillasitio.html'}}
+{{if auth.user is None:}}
+<style>
+.main-panel {
+  transition: width 0.25s ease, margin 0.25s ease;
+  width: calc(100%);
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+</style>
+{{pass}} 
+{{if session.usuario_ci is not None:}}
+
+ 
+                <div class="col-lg-12">
+                   <div class="alert alert-danger alert-mg-b alert-danger-style4">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+                            <h6><b> Error!</b></h6>
+                            <p> {{=session.usuario_ci}} </p>
+                    
+                    </div>
+                </div>
+        {{pass}}
+
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+
+    <h2>Modificar usuario</h2>
+   
+    </br>
+    {{session.usuario_ci=None}}
+    {{=formulario}}
+
+</div>
+</div>
+</div>

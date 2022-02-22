@@ -1,0 +1,378 @@
+{{extend 'plantillasitio.html'}}
+ 
+{{if auth.user is None:}}
+
+<style>
+.main-panel {
+  transition: width 0.25s ease, margin 0.25s ease;
+  width: calc(100%);
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  }
+
+
+
+
+</style>
+{{else:}}
+{{if graduadospre is None:}}
+<style>
+.main-panel {
+  transition: width 0.25s ease, margin 0.25s ease;
+  width: calc(100%);
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  }
+
+
+
+
+</style>
+{{pass}} 
+{{pass}} 
+{{if request.args(0)=="error":}}
+
+ 
+                <div class="col-lg-12">
+                   <div class="alert alert-danger alert-mg-b alert-success-style4">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+                            <h6><b> Error!</b></h6>
+                            <p> El código a verificar no esta asignado a ningún graduado </p>
+                    
+                    </div>
+                </div>
+              
+      
+
+{{pass}}
+{{if request.args(0)=="creado":}}
+
+ 
+                <div class="col-lg-12">
+                   <div class="alert alert-success alert-mg-b alert-success-style4">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="adminpro-icon adminpro-danger-error admin-check-sucess"></span>
+                            <h6><b> Aceptada!</b></h6>
+                            <p> El usuario ha sido creado. Proceda a iniciar sesión con los datos creados  </p>
+                    
+                    </div>
+                </div>
+        {{pass}}
+
+
+
+{{if auth.has_membership('Administrador') or auth.has_membership('Técnico') or auth.user is None:}}
+
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    
+      
+      <div class="row">
+        
+        <div class="col-md-12 grid-margin stretch-card">
+        
+          <div class="card">
+            <div class="card-body">
+
+                
+              <section id="about" class="about-area pt-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-content mt-50 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="section-title">
+                            <div class="line"></div>
+                            </br>
+                </br>
+                            <h3 class="title">Registrar usuario</h3>
+                        </div> <!-- section title -->
+                        <p class="text">Para poder realizar las operaciones que permite el sitio, deberá crearse primeramente un usuario. Lo puede crear en el menú superior en la opción registrarse o presionando clic en el botón que se encuentra debajo del artículo</p>
+                        <form action="{{=URL('usuario', 'crear_usuario')}}" method="POST" id="formBuscar" >
+              <button type="submit" class="btn btn-primary">Registrarse</button>
+              </form>
+                    </div> <!-- about content -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image text-center mt-50 wow fadeInRightBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <img class="img-fluid" style="max-width:100%; height:auto;" src="{{=URL('static','secretaria/registrarse1.png')}}">
+                    </div> <!-- about image -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+        
+    </section>
+
+</br>
+                </br>
+                </br>
+         <section id="about" class="about-area pt-70">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6">
+                    <div class="about-image text-center mt-50 wow fadeInRightBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <img class="img-fluid" style="max-width:100%; height:auto;" src="{{=URL('static','secretaria/login.png')}}">
+                    </div> <!-- about image -->
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="about-content mt-50 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="section-title">
+                            <div class="line"></div>
+                            </br>
+                </br>
+                </br>
+                 </br>
+                </br>
+                </br>
+                            <h3 class="title">Autenticar usuario</h3>
+                        </div> <!-- section title -->
+                        <p class="text">Una vez creado el usuario proceda a autenticar el usuario para poder realizar las operaciones del sitio</p>
+                        <form action="{{=URL('default','user/login')}}" method="POST" id="formBuscar" >
+            <button type="submit" class="btn btn-primary">Autenticarse</button>
+            </form>
+                    </div> <!-- about content -->
+                </div>
+                
+            </div> <!-- row -->
+        </div> <!-- container -->
+        
+    </section>
+</br>
+                </br>
+                </br>
+            <section id="about" class="about-area pt-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-content mt-50 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="section-title">
+                            <div class="line"></div>
+                      </br>
+                </br>
+                 </br>
+                </br>
+                </br>
+                            <h3 class="title">Crear solicitud de pregrado</h3>
+                        </div> <!-- section title -->
+                        <p class="text">Luego de autenticarse en el sitio puede proceder a crear una nueva solicitud de pregrado en el menú lateral izquierdo en la opción "Solicitud Pregrado" "Crear" o presionar en el botón "Registrar solicitud"</p>
+                        <form action="{{=URL('solicitud_pregrado','crear_solicitud_pregrado')}}" method="POST" id="formBuscar" >
+            <button type="submit" class="btn btn-primary">Registrar solicitud</button>
+            </form>
+                    </div> <!-- about content -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image text-center mt-50 wow fadeInRightBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <img class="img-fluid" style="max-width:100%; height:auto;" src="{{=URL('static','secretaria/crear_solicitud_pregrado1.png')}}">
+                    </div> <!-- about image -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+        
+    </section>
+    </br>
+                </br>
+                </br>
+     <section id="about" class="about-area pt-70">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6">
+                    <div class="about-image text-center mt-50 wow fadeInRightBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <img class="img-fluid" style="max-width:100%; height:auto;"  src="{{=URL('static','secretaria/codigospregrado1.png')}}">
+                    </div> <!-- about image -->
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="about-content mt-50 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="section-title">
+                            <div class="line"></div>
+                            </br>
+                
+                </br>
+                </br>
+                            <h3 class="title">Descargar y Visualizar código</h3>
+                        </div> <!-- section title -->
+                        <p class="text">Si la solicitud creada es correcta, es decir que los datos validados son correctos, se generá un código único para esa solicitud. Luego procederá a descargar el documento generado que posee el título de graduado y el código generado en conjunto con la firma de la secretaría de la universidad, para ello accede a la opción del menú lateral izquierdo "Código" "Pregrado" "Descargar" "Descargar documento"</p>
+                       <form action="{{=URL('codigo_pregrado','codigos')}}" method="POST" id="formBuscar" >
+              <button type="submit" class="btn btn-primary">Visualizar código</button>
+              </form>
+                    </div> <!-- about content -->
+                </div>
+                
+            </div> <!-- row -->
+        </div> <!-- container -->
+         </section>
+
+         </br>
+                </br>
+                </br>
+            <section id="about" class="about-area pt-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-content mt-50 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="section-title">
+                            <div class="line"></div>
+                     
+               
+                </br>
+                </br>
+                            <h3 class="title">Verificar solicitud de pregrado</h3>
+                        </div> <!-- section title -->
+                        <p class="text">Para poder verificar que un código pertenezca a la persona correcta, se debe proceder a verificar dicho código en la parte superior del sistema en icono de la lupa o en el botón "Validar"</p>
+                         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#mediumModal">Validar</button>
+                    </div> <!-- about content -->
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image text-center mt-50 wow fadeInRightBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                     </br>
+                 </br>
+                        <img class="img-fluid" style="max-width:100%; height:auto;"  src="{{=URL('static','secretaria/validar_codigo1.png')}}">
+                    </div> <!-- about image -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+        
+    </section>
+              </div>
+            </div>
+          
+          
+        </div>
+        
+        
+        
+      
+      
+        
+      
+    
+    </div>
+    
+    </div>
+
+{{else:}}
+{{if auth.user is not None:}}
+{{if graduadospre is None:}}
+  <div class="col-12 grid-margin">
+  <div class="card" >
+  <div class="card-body" >
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    
+      
+      <div class="row">
+        
+<div class="col-md-4 grid-margin stretch-card" >
+      </div>
+      <div class="col-md-4 grid-margin stretch-card" >
+
+           <img class="img-fluid"  src="{{=URL('static','cancel.png')}}"> 
+           </div>
+      <div class="col-md-4 grid-margin stretch-card" >
+      </div>
+              
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h1>Su carnet es {{=auth.user.ci}} y no está asociado a ningún graduado registrado en la base de datos. Diríjase a la Secretaría General de la Universidad</h1>
+                
+            </div>
+          </div>
+      </div>
+
+      
+            </div>
+          </div>
+        </div>
+    
+    </div>
+    
+    </div>
+{{else:}}
+<div class="col-12 grid-margin">
+<div class="card" >
+<div class="card-body" >
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  
+    
+    <div class="row">
+      <div class="col-md-4 grid-margin stretch-card" >
+      </div>
+      <div class="col-md-4 grid-margin stretch-card" >
+
+           <img class="img-fluid"  src="{{=URL('static','check.png')}}"> 
+           </div>
+      <div class="col-md-4 grid-margin stretch-card" >
+      </div>
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <b>Nombre: </b>{{=graduadospre.nombre1}}
+            
+        {{if graduadospre.nombre2 is not None:}}
+        {{=graduadospre.nombre2}}
+        {{pass}}
+        </br>
+         </br>
+           <b>Apellidos:</b> {{=graduadospre.apellido1}} {{=graduadospre.apellido2}}
+           </br>
+         </br>
+          <b>CI:</b> {{=graduadospre.ci}}
+          </br>
+         </br>
+            <b>Tomo de Secretaría General:</b>  {{=graduadospre.tomo_secretaria}}
+          </br>
+         </br>
+         <b>Fecha de Graduación:</b> {{=graduadospre.fecha_graduado}}
+          </div>
+        </div>
+    </div>
+
+     <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <b>Folio de Secretaría General:</b> {{=graduadospre.folio_secretaria}}
+        </br>
+         </br>
+          <b>Número de Secretaría General:</b> {{=graduadospre.numero_secretaria}}
+           </br>
+         </br>
+         <b>País:</b> {{=graduadospre.pais}}
+          </br>
+         </br>
+            <b>Modalidad:</b> {{=graduadospre.modalidad}}
+            </br>
+         </br>
+            <b>Carrera:</b> {{=graduadospre.carrera}}
+          </div>
+        </div>
+      </div>
+
+          </div>
+        </div>
+      </div>
+   
+  </div>
+  
+  </div>
+
+
+{{pass}}
+
+{{pass}}
+
+{{pass}} 
+
+
+
+  
+
